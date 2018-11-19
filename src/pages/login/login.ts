@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { CarsListPage } from '../cars-list/cars-list';
 
 /**
  * Generated class for the LoginPage page.
@@ -20,6 +21,14 @@ export class LoginPage {
 
   navigateToPage(pageName: string) {
     this.navCtrl.push(pageName);
+    /*
+    if (pageName === 'CarsListPage') {
+      this.navCtrl.push(CarsListPage);
+    }
+    else {
+      this.navCtrl.push(pageName);
+    }
+    */
   }
 
 }
