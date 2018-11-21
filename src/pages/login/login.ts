@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { CarsListPage } from '../cars-list/cars-list';
-
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { IonicPage, NavController, NavParams, UrlSerializer } from 'ionic-angular';
+//import { CarsListPage } from '../cars-list/cars-list';
+import { AngularFireAuth } from "angularfire2/auth";
+import { User } from "../../moduls/user/User";
 
 @IonicPage()
 @Component({
@@ -16,7 +11,12 @@ import { CarsListPage } from '../cars-list/cars-list';
 })
 export class LoginPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  user = {} as User;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private afAuth: AngularFireAuth) {
   }
 
   navigateToPage(pageName: string) {
@@ -30,5 +30,14 @@ export class LoginPage {
     }
     */
   }
-
+  async login() {
+    try{
+      const result = await 
+      this.afAuth.auth.signInWithEmailAndPassword(this.user.email, this.user.password);
+      console.log(result);
+    }
+    catch(e){
+      console.error(e);
+    }
+  }
 }
